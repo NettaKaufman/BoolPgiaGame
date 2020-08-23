@@ -8,10 +8,13 @@ function showGame() {
 var numArr = new Array;
 var numInput = new Array();
 var isBP = new Array();
+var flag = true;
+var i; var j;
+
 
 function randomNumbers()
 {
-  var numArr = [];
+  numArr = [];
   while (numArr.length < 5)
     {
     var n =  Math.floor(Math.random() * 9 + 1);
@@ -33,13 +36,9 @@ function  checkNums(numArr)
    numInput[1] = document.getElementById("num2").value;
    numInput[2] = document.getElementById("num3").value;
    numInput[3] = document.getElementById("num4").value;
-   for (var i = 0; i < 4; i++) {
-     console.log(numInput[i]);
-   }
-   for ( i = 0; i < 4; i++) {
-    console.log(numArr[i]);
-   }
-  for (var i = 0; i < 4; i++)
+
+
+  for ( i = 0; i < 4; i++)
    {
      if (numInput[i] == numArr[i])
      {
@@ -47,9 +46,9 @@ function  checkNums(numArr)
      }
      else
      {
-       for (var j = 0; j<4; j++)
+       for ( j = 0; j<4; j++)
        {
-         if (numInput[i] == numArr[j])
+         if (numArr[i] == numInput[j])
           {isBP[i] = "O";}
          else
           { isBP[i] = "-"; }
@@ -61,6 +60,21 @@ function  checkNums(numArr)
      for (var i = 0; i < 4; i++)
        {  console.log(isBP[i]);  }
 
+       var divInfo = document.getElementById('list');
+       var quote = document.createElement('p');
+       var t;
+       t =numInput[0] + " "+numInput[1] + " "+numInput[2] + " "+numInput[3] + "  "+  isBP[0] + " " + isBP[1]+ " "+isBP[2] + " " + isBP[3];
+       divInfo.appendChild(quote);
+       quote.innerHTML += t;
+      for ( i = 0; i < 4; i++) {
+        if (isBP[i] != "X")
+        {  flag=false;  }
+        }
+      if (flag) {
+          alert("you won!");
+          var a = document.getElementById("startOver");
+          a.style.display = "block";
+      }
 
 
-}
+  }
